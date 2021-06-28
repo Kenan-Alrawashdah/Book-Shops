@@ -1,0 +1,54 @@
+﻿@model Book
+<h1>Book Information</h1>
+<hr />
+<div class="row flex-wrap">
+    <div class="col-md-3">
+        @if (Model.ImageUrl is null)
+        {
+            <img class="card-img-top img-thumbnail" width="250" height="300" src="https://booklife.com/image-factory/http/localhost/amazongetcover/9780395869468.jpg/w204.jpg" />
+        }
+        else
+        {
+            <img class="card-img-top img-thumbnail" height="270" src="@Model.ImageUrl" width="250" height="300" />
+
+        }
+    </div>
+    <div class="col-md-9">
+        <form class="mt-3">
+            <div>
+                <pre style="font-size:19px;"><label asp-for="BookId" class="font-weight-bolder" style="font-size:18px;"></label> : @Model.BookId</pre>
+            </div>
+            <div>
+                <pre style="font-size:19px;"><label asp-for="Title" class="font-weight-bolder" style="font-size:18px;"></label> : @Model.Title</pre>
+            </div>
+            <div>
+                <pre style="font-size:19px;"><label asp-for="Description" class="font-weight-bolder" style="font-size:18px;"></label> : @Model.Description</pre>
+            </div>
+            <div>
+                <pre style="font-size:19px;"><label asp-for="Authors" class="font-weight-bolder" style="font-size:18px;"></label> : @Model.Authors</pre>
+            </div>
+            <div>
+                <pre style="font-size:19px;"><label asp-for="Price" class="font-weight-bolder" style="font-size:18px;"></label> : @Model.Price.ToString("c")</pre>
+            </div>
+            <div>
+                <pre style="font-size:19px;"><label asp-for="Category" class="font-weight-bolder" style="font-size:18px;"></label> : @Model.Category</pre>
+            </div>
+            <div>
+                <pre style="font-size:19px;"><label asp-for="Count" class="font-weight-bolder" style="font-size:18px;"></label> : @Model.Count</pre>
+            </div>
+            <div>
+                <pre style="font-size:19px;"><label asp-for="PublishedDate" class="font-weight-bolder" style="font-size:18px;"></label> : @Model.PublishedDate.ToString("d")</pre>
+            </div>
+
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@Model.BookId">Delete</a>
+            <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-primary">Edit</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+}
+

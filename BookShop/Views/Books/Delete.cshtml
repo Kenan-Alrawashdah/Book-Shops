@@ -1,0 +1,9 @@
+﻿@model Book
+
+<h1>Delete Book</h1>
+<hr />
+<p>Are you sure of delete <strong class="text-danger">@Model.Title</strong> book, Author : <strong class="text-danger">@Model.Authors</strong></p>
+
+    <a asp-action="Index" class="btn btn-secondary mr-2">Cancel</a>
+    <a asp-action="DeleteBook" asp-route-id="@Model.BookId" class="btn btn-danger">Delete</a>
+

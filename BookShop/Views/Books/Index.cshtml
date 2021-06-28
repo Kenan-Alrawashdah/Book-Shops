@@ -1,0 +1,70 @@
+﻿@model List<Book>
+
+<div class="row flex-wrap">
+
+    <div class="col-md-3 mt-2 mb-2"> <h2>Books</h2></div>
+    <div class="col-md-6 mt-2 mb-2">
+        @using (Html.BeginForm("Search", "Books", FormMethod.Post))
+        {
+            <input class="form-control" type="search" name="searchText" placeholder="Search Title, Description, Authors" maxlength="50">
+
+        }
+    </div>
+    <div class="col-md-3 text-md-right mt-2 mb-2"><a asp-action="Create" class="btn btn-outline-primary "> Add Book</a></div>
+</div>
+<hr />
+
+
+
+
+<div class="mt-10" style="display:flex;flex-flow:wrap">
+
+    @if (Model is null || Model.Count == 0)
+    {
+        <h5 class="lead">No books yet!</h5>
+    }
+    else
+    {
+        foreach (Book book in Model)
+        {
+           
+<div class="card m-3" style="width: 15rem;">
+    @if (book.ImageUrl is null)
+    {
+        <img class="card-img-top" height="270" src="https://booklife.com/image-factory/http/localhost/amazongetcover/9780395869468.jpg/w204.jpg"  alt="iamge book"/>
+    }
+    else
+    {
+        <img class="card-img-top" height="270" src="@book.ImageUrl" alt="iamge book"/>
+
+    }
+    <div class="card-body pt-2">
+        <span class="text-secondary">@book.Category</span>
+        <h6 class="card-title mt-2">@book.Title</h6>
+        <p class="text-secondary"><strong>by&nbsp;</strong>@book.Authors</p>
+        <div class="row">
+            <div class="col-md-6 text-left pt-1">
+                <span class="badge badge-pill badge-primary" style="font-size:20px;">@book.Price.ToString("c")</span>
+            </div>
+            <div class="col-md-6 text-right">
+                <div class="btn-group">
+                    <button type="button" class="p-0 mt-2" style="background:transparent;border: none; outline:none" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="material-icons">
+                            more_vert
+                        </span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" asp-action="Details" asp-route-id="@book.BookId">Details</a>
+                        <a class="dropdown-item" asp-action="Edit" asp-route-id="@book.BookId">Edit</a>
+                        <a class="dropdown-item" asp-action="Delete" asp-route-id="@book.BookId">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        }
+    }
+
+</div>
